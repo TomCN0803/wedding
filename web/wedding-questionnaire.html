@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚礼回执</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #eb740b;
+            /* 深红色 */
+            --secondary-color: #e8daef;
+            --text-color: #5d6d7e;
+            --container-bg: #ffffff;
+            --border-color: #e8e8e8;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #fdfcf8, #f5f5dc);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Lora', serif;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group input[type="tel"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            accent-color: var(--primary-color);
+        }
+
+        #guest-count-group {
+            display: none;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #d0650a;
+            /* 悬停时更深的颜色 */
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        #thank-you-message {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>汤昊坤❤️崔宇航</h1>
+            <p>诚邀您参加我们的婚礼</p>
+        </header>
+
+        <div
+            style="text-align: center; margin: 40px 20px; line-height: 1.8; font-size: 1.1em; color: var(--text-color);">
+            ❣️✨囍 ♡ + ♡ = ♡² 囍✨❣️<br>
+            世间所有的相遇都是久别重逢✨<br>
+            心有所爱 才会坚定未来可期💖<br>
+            收到这封邀请函的亲人朋友💌<br>
+            感谢陪伴我们走过许多岁月<br>
+            这样特殊的一天<br>
+            希望有你们见证并分享美好时刻🤵🏻👰🏻‍♀️<br><br>
+            <strong>2025年8月3日</strong><br>
+            💐好久不见，婚礼见💒
+        </div>
+
+        <div id="start-section" style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+            <p style="margin-bottom: 20px; font-size: 1.1em;">请点击下方的按钮开始填写回执</p>
+            <button id="start-btn" class="submit-btn" style="width: auto; padding: 15px 50px;">开始作答</button>
+        </div>
+
+        <form id="rsvp-form" style="display: none;">
+            <div class="form-group">
+                <label for="name">您的姓名</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>您是否会参加？</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="attending" value="yes" required> 是的，我会参加
+                    </label>
+                    <label>
+                        <input type="radio" name="attending" value="no"> 抱歉，我无法参加
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" id="guest-count-group">
+                <label for="guest-count">参加人数（包括您自己）</label>
+                <input type="number" id="guest-count" name="guest-count" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="dietary">饮食禁忌或过敏</label>
+                <textarea id="dietary" name="dietary" placeholder="例如：素食、对海鲜过敏等"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">联系电话</label>
+                <input type="tel" id="phone" name="phone" placeholder="您的联系电话">
+            </div>
+
+            <button type="submit" class="submit-btn">提交</button>
+        </form>
+
+        <div id="thank-you-message">
+            <h2>感谢您的回复！</h2>
+            <p>我们期待在婚礼上与您相见！</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const startSection = document.getElementById('start-section');
+            const startBtn = document.getElementById('start-btn');
+            const form = document.getElementById('rsvp-form');
+            const attendingRadios = document.querySelectorAll('input[name="attending"]');
+            const guestCountGroup = document.getElementById('guest-count-group');
+            const thankYouMessage = document.getElementById('thank-you-message');
+
+            startBtn.addEventListener('click', function () {
+                startSection.style.display = 'none';
+                form.style.display = 'block';
+            });
+
+            attendingRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.value === 'yes') {
+                        guestCountGroup.style.display = 'block';
+                    } else {
+                        guestCountGroup.style.display = 'none';
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // 在这里，您可以添加代码将表单数据发送到服务器
+                // 例如：using fetch() API
+
+                // 显示感谢信息
+                form.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
